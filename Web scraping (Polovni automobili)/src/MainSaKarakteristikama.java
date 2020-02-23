@@ -9,7 +9,7 @@ public class MainSaKarakteristikama {
 	////////////////////////////////////////
 	public static void main(String[] args) {
 		try {
-			getSingleCar("https://www.polovniautomobili.com/auto-oglasi/14687627/audi-a3?ref=featured-home");
+			getSingleCar("https://www.polovniautomobili.com/auto-oglasi/14575731/volkswagen-caddy?ref=featured-home");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -27,6 +27,8 @@ public class MainSaKarakteristikama {
 		ArrayList<String> security = new ArrayList<String>();
 		ArrayList<String> equipment = new ArrayList<String>();
 		ArrayList<String> condition = new ArrayList<String>();
+		ArrayList<String> description = new ArrayList<String>();
+		ArrayList<String> imagesLinks = new ArrayList<String>();
 		
 		String forBasicInfoMapName = new String();
 		Object forBasicInfoMapValue = new Object();
@@ -40,11 +42,14 @@ public class MainSaKarakteristikama {
 		String securityValue = new String();
 		String equipmentValue = new String();
 		String conditionValue = new String();
+		String descriptionLine = new String();
+		String imageLink = new String();
 		
 		while (scanner.hasNext()) {
 			line = scanner.nextLine();
 			line = line.trim();
 			
+			// BASIC INFO NAME
 			if(line.contains("uk-hidden-large uk-width-medium-2-10 uk-width-1-2 uk-text-bold")) {
 				int basicInfoNameBeginIndex = line.indexOf(">", 5) + 1;
 				int basicInfoNameEndIndex = line.indexOf("</");
@@ -58,6 +63,8 @@ public class MainSaKarakteristikama {
 				forBasicInfoMapName = basicInfoName;
 				
 			}
+			
+			// BASIC INFO VALUE
 			if(line.contains("uk-width-large-1-1 uk-width-medium-3-10 uk-width-1-2")) {
 				int basicInfoValueBeginIndex = line.lastIndexOf("\">") + 2;
 				int basicInfoValueEndIndex = line.indexOf("</div>");
@@ -72,6 +79,8 @@ public class MainSaKarakteristikama {
 				hasBasicInfoValue = true;
 				forBasicInfoMapValue = basicInfoValue;
 			}
+			
+			// PRICE
 			if(line.contains("price-item position-relative")) {
 				price = scanner.nextLine().trim();
 			}
@@ -79,12 +88,13 @@ public class MainSaKarakteristikama {
 				price = scanner.nextLine().trim();
 				price = scanner.nextLine().trim();
 			}
+			
+			// INFO CATEGORY NAME
 			if(line.contains("classified-title js-title-toggle position-relative")) {
 				category = line.substring(line.indexOf("relative\">") + 10, line.indexOf("<i")).trim();
-				System.out.println(category);
 			}
 			
-			// SECURITY AND EQUIPMENT
+			// SECURITY, EQUIPMENT AND CONDITION
 			if(line.contains("uk-width-medium-1-3 uk-width-1-2")) {
 				if(category.equals("Sigurnost")) {
 					securityValue = line.substring(line.indexOf(">") + 1, line.lastIndexOf("<"));
@@ -110,6 +120,24 @@ public class MainSaKarakteristikama {
 				characteristics.add(characteristicWhole);
 			}
 			
+			// DESCRIPTION
+			if(line.contains("uk-width-1-1 description-wrapper")) {
+				descriptionLine = scanner.nextLine().trim();
+				while(!descriptionLine.equals("</div>")) {
+					if(descriptionLine.contains("<br />")) {
+						descriptionLine = descriptionLine.substring(0, descriptionLine.indexOf("<br />"));
+					}
+					description.add(descriptionLine);
+					descriptionLine = scanner.nextLine().trim();
+					
+				}
+			}
+			if(line.contains("<li data-thumb")) {
+				imageLink = line.substring(line.lastIndexOf("https://images3"), line.lastIndexOf(" class") - 1);
+				imagesLinks.add(imageLink);
+			}
+				
+			
 			
 			if(hasBasicInfoName && hasBasicInfoValue) {
 				basicInfo.put(forBasicInfoMapName, forBasicInfoMapValue);
@@ -118,13 +146,14 @@ public class MainSaKarakteristikama {
 			
 		}
 		
-		
-		System.out.println(basicInfo);
 		System.out.println(characteristics);
 		System.out.println(security);
 		System.out.println(equipment);
 		System.out.println(condition);
+		System.out.println(description);
+		System.out.println(imagesLinks);
 		
+		// FIXING BASIC INFO VALUES (GOOD FORMATTING)
 		String kilometraža = basicInfo.get("Kilometraža").toString();
 		kilometraža = kilometraža.substring(0, kilometraža.length() - 3);
 		kilometraža = kilometraža.replace(".", "");
