@@ -1,0 +1,83 @@
+AC
+Alfa Romeo
+Aro
+Aston Martin
+Audi
+Austin
+Autobianchi
+Bentley
+BMW
+Buick
+Cadillac
+Chery
+Chevrolet
+Chrysler
+Citroen
+Dacia
+Daewoo
+Daihatsu
+Dodge
+Ferrari
+Fiat
+Ford
+GAZ
+Great Wall
+GMC
+Honda
+Hummer
+Hyundai
+Infiniti
+Innocenti
+Isuzu
+Jaguar
+Jeep
+Katay Gonow
+Kia
+Lada
+Lamborghini
+Lancia
+Land Rover
+Lexus
+Lincoln
+Lotus
+Mahindra
+Maserati
+Maybach
+Mazda
+Mercedes Benz
+Mini
+MG
+Mitsubishi
+Moszkvics
+Nissan
+Opel
+Peugeot
+Piaggio
+Plymouth
+Polski Fiat
+Pontiac
+Porsche
+Renault
+Rolls Royce
+Rover
+Saab
+Seat
+Shuanghuan
+Simca
+Smart
+SsangYong
+Subaru
+Suzuki
+Škoda
+Talbot
+Tata
+Tavria
+Toyota
+Trabant
+UAZ
+Vauxhall
+Volkswagen
+Volvo
+Wartburg
+Zastava
+ZhiDou
