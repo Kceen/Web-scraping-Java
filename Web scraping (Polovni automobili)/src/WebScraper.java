@@ -1,37 +1,36 @@
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 
 public class WebScraper {
-
+	static int globalIdCounter = 0;
+	
 	////////////////////////////////////////
 	public static void main(String[] args) {
-		int i = 0;
-		while(i < 10) {
 			try {
-				//getSingleCar("https://www.polovniautomobili.com/auto-oglasi/15863033/volkswagen-passat-cc");
+				//getSingleCar("https://www.polovniautomobili.com/auto-oglasi/12133591/ford-ranger?ref=featured-home");
 				
-				getCarsFromSearch("https://www.polovniautomobili.com/auto-oglasi/pretraga?brand=&price_to=&year_from=&year_to=&showOldNew=all&submit_1=&without_price=1");
-				i++;
+				getCarsFromSearch("https://www.polovniautomobili.com/auto-oglasi/pretraga?brand=&price_from=&price_to=&year_from=&year_to=&flywheel=&atest=&door_num=&submit_1=&without_price=1&date_limit=&showOldNew=all&modeltxt=&engine_volume_from=&engine_volume_to=&power_from=&power_to=&mileage_from=&mileage_to=&emission_class=&seat_num=&wheel_side=&registration=&country=&country_origin=&city=&registration_price=&page=&sort=");
+				
 			
 			} catch (Exception e) {
 				e.printStackTrace();
-				i++;
 			}
-		}
-		
 	}
 	////////////////////////////////////////
 	
@@ -39,7 +38,7 @@ public class WebScraper {
 		URL url = new URL(urlString);
 		Scanner scanner = new Scanner(new InputStreamReader(url.openStream()));
 		String line;
-		//PrintWriter writer = new PrintWriter(new FileOutputStream(new File("automobili.txt"), true), true);
+		PrintWriter writer = new PrintWriter(new FileOutputStream(new File("automobili.txt"), true), true);
 		
 		HashMap<String, Object> basicInfo = new HashMap<String, Object>();
 		ArrayList<String> characteristics = new ArrayList<String>();
@@ -48,6 +47,12 @@ public class WebScraper {
 		ArrayList<String> condition = new ArrayList<String>();
 		ArrayList<String> description = new ArrayList<String>();
 		ArrayList<String> imagesLinks = new ArrayList<String>();
+		
+		StringBuilder characteristicsStringBuilder = new StringBuilder();
+		StringBuilder securityStringBuilder = new StringBuilder();
+		StringBuilder equipmentStringBuilder = new StringBuilder();
+		StringBuilder conditionStringBuilder = new StringBuilder();
+		StringBuilder descriptionStringBuilder = new StringBuilder();
 		
 		String forBasicInfoMapName = new String();
 		Object forBasicInfoMapValue = new Object();
@@ -63,6 +68,7 @@ public class WebScraper {
 		String conditionValue = new String();
 		String descriptionLine = new String();
 		String imageLink = new String();
+		String imagesFolderName = new String();
 		String imagePath = new String();
 		
 		while (scanner.hasNext()) {
@@ -186,7 +192,7 @@ public class WebScraper {
 		System.out.println(equipment);
 		System.out.println(condition);
 		System.out.println(description);
-		System.out.println(imagesLinks);
+		//System.out.println(imagesLinks);
 		
 		
 		// FIXING BASIC INFO VALUES (GOOD FORMATTING)
@@ -233,16 +239,83 @@ public class WebScraper {
 		
 		basicInfo.remove("Broj oglasa");
 		
-		imagePath = basicInfo.get("Marka").toString() + "-" + basicInfo.get("Model").toString() + "-" + basicInfo.get("Godište") + "-" + basicInfo.get("Kilometraža").toString();
-		for (String imgLink : imagesLinks) {
-			downloadImage(imgLink, imagePath);
+	
+		System.out.println(basicInfo);
+		/*
+		System.out.println("////////////////////////////////////////////////////////");
+		System.out.println("////////////////////////////////////////////////////////");
+		System.out.println("////////////////////////////////////////////////////////");
+		*/
+		
+		// MAKE ARRAYS INTO STRINGS
+		for (String c : characteristics) {
+			characteristicsStringBuilder.append(c + ",");
+		}
+		for (String s : security) {
+			securityStringBuilder.append(s + ",");
+		}
+		for (String e : equipment) {
+			equipmentStringBuilder.append(e + ",");
+		}
+		for (String cd : condition) {
+			conditionStringBuilder.append(cd + ",");
+		}
+		for (String d : description) {
+			descriptionStringBuilder.append(d + ",");
 		}
 		
-		System.out.println(basicInfo);
-		System.out.println("////////////////////////////////////////////////////////");
-		System.out.println("////////////////////////////////////////////////////////");
-		System.out.println("////////////////////////////////////////////////////////");
+		writer.append("INSERT INTO automobil(idAutomobil, marka, model, gorivo, ks, cena, kubikaza, zamena, kilometraza, fiksnaCena, stanje, karoserija, godiste, karakteristike, sigurnost, oprema, stanjeLista, opis, thumbnailPath) VALUES (");
+		writer.append(++globalIdCounter + ",");
+		writer.append("\"" + basicInfo.get("Marka").toString() + "\", ");
+		writer.append("\"" + basicInfo.get("Model").toString() + "\", ");
+		writer.append("\"" + basicInfo.get("Gorivo").toString() + "\", ");
+		writer.append(basicInfo.get("Snaga motora").toString() + ",");
+		writer.append(basicInfo.get("Cena").toString() + ",");
+		writer.append(basicInfo.get("Kubikaža").toString() + ",");
+		writer.append("\"" + basicInfo.get("Zamena").toString() + "\", ");
+		writer.append(basicInfo.get("Kilometraža").toString() + ",");
+		writer.append("\"" + basicInfo.get("Fiksna cena").toString() + "\", ");
+		writer.append("\"" + basicInfo.get("Vozilo").toString() + "\", ");
+		writer.append("\"" + basicInfo.get("Karoserija").toString() + "\", ");
+		writer.append(basicInfo.get("Godište").toString() + ",");
+		writer.append("\"" + characteristicsStringBuilder + "\", ");
+		writer.append("\"" + securityStringBuilder + "\", ");
+		writer.append("\"" + equipmentStringBuilder+ "\", ");
+		writer.append("\"" + conditionStringBuilder + "\", ");
+		writer.append("\"" + descriptionStringBuilder + "\", ");
+		writer.append(null + ");");
+		writer.append("\n");
+		writer.append("\n");
+	
+		imagesFolderName = basicInfo.get("Marka").toString() + "-" + basicInfo.get("Model").toString() + "-" + basicInfo.get("Godište") + "-" + basicInfo.get("Kilometraža").toString();
 		
+		// DOWNLOADING THUMBNAIL
+		imagePath = downloadImage(imagesLinks.get(0), imagesFolderName, true);
+		writer.append("INSERT INTO slika(path, Automobil_idAutomobil) VALUES (");
+		writer.append("\"/autinjo/images/" + imagePath + "\", ");
+		writer.append(globalIdCounter + ");");
+		writer.append("\n");
+		writer.append("UPDATE `autinjodb`.`automobil` SET `thumbnailPath` = " + "\"/autinjo/images/" + imagePath + "\"" + " WHERE (`idAutomobil` = " + globalIdCounter + ");");
+		writer.append("\n");
+		writer.append("\n");
+		
+		
+		
+		// DOWNLOADING ALL IMAGES
+		//for (String imgLink : imagesLinks) {
+		
+		// DOWNLOADING FIRST 5 IMAGES
+		for(int i = 0 ; i < 5 ; i++) {
+			imagePath = downloadImage(imagesLinks.get(i), imagesFolderName, false);
+			writer.append("INSERT INTO slika(path, Automobil_idAutomobil) VALUES (");
+			writer.append("\"/autinjo/images/" + imagePath + "\", ");
+			writer.append(globalIdCounter + ");");
+			writer.append("\n");
+			writer.append("\n");
+		}
+		System.out.println("CAR DONE");
+		 
+		writer.close();
 		scanner.close();
 	}
 	
@@ -250,52 +323,79 @@ public class WebScraper {
 		URL url = new URL(urlString);
 		Scanner scanner = new Scanner(new InputStreamReader(url.openStream()));
 		String line;
-		List<String> links = new ArrayList<>();
-		String link;
-		int counter = 0;
+		Set<String> linksSet = new HashSet<String>();
 		
-		while (scanner.hasNext()) {
+		// GATHER ALL LINKS LEADING TO INDIVIDUAL CAR PAGE
+		while(scanner.hasNext()) {
 			line = scanner.nextLine().trim();
-			if(line.contains("<a onclick=\"dataLayer.push({'event':'klikIstaknut'});") && (counter % 2 == 0)) {
-				counter++;
-				//System.out.println(line);
-				
-				int beginIndex = line.indexOf("/");
-				int endIndex = line.indexOf(" ", beginIndex + 1);
-				link = line.substring(beginIndex, endIndex - 1);
-				link = "https://www.polovniautomobili.com" + link;
-				links.add(link);
-				
-				line = scanner.nextLine().trim();
-				
-			}
-			if(line.contains("<a onclick=\"dataLayer.push({'event':'klikIstaknut'});") && (counter % 2 != 0)) {
-				counter++;
-			}
 			
+			if(line.contains("dataLayer.push({'event':'klikIstaknut'});")) {
+				if(line.contains("title")) {
+					line = line.substring(line.indexOf("href=") + 7, line.lastIndexOf(" title") - 1);
+					line = "https://www.polovniautomobili.com/" + line;
+				}
+				else {
+					line = line.substring(line.indexOf("href=") + 7, line.lastIndexOf(">") - 1);
+					line = "https://www.polovniautomobili.com/" + line;
+				}
 			
+				linksSet.add(line);
+			}
+			if(line.contains("dataLayer.push({'event':'klikIstaknutXl'});") && !line.contains("title")) {
+				if(line.contains("image")) {
+					line = line.substring(line.indexOf("href=") + 7, line.lastIndexOf("?"));
+					line = "https://www.polovniautomobili.com/" + line;
+				}
+				else {
+					line = line.substring(line.indexOf("href=") + 7, line.lastIndexOf(">") - 1);
+					line = "https://www.polovniautomobili.com/" + line;
+				}
+				
+				linksSet.add(line);
+			}
+			if(line.contains("dataLayer.push({'event':'klikVrh'});")) {
+				line = line.substring(line.indexOf("href=") + 7, line.indexOf("?"));
+				line = "https://www.polovniautomobili.com/" + line;
+				
+				linksSet.add(line);
+			}
 		}
-		scanner.close();
 		
-		for (String l : links) {
-			getSingleCar(l);
+		
+		for (String link : linksSet) {
+			getSingleCar(link);
 		}
+		
+		
+		scanner.close();
 	
 	}
 
-	public static void downloadImage(String imageLinkString, String imagePath) {
+	// DOWNLOAD THE IMAGE FROM GIVEN URL AND RETURN PATH ON DISK WHERE IT IS DOWNLOADED
+	public static String downloadImage(String imageLinkString, String imagesFolderName, boolean thumbnail) {
 		BufferedImage image = null;
 		Random random = new Random();
+		int randomImageInt = random.nextInt(1000);
+		
 		try {
 		    URL imageUrl = new URL(imageLinkString);
 		    image = ImageIO.read(imageUrl);
 		    
-		    Path path = Paths.get("C:\\Users\\Nikola\\git\\Web-scraping-Java\\Web scraping (Polovni automobili)\\" + imagePath);
+		    Path path = Paths.get("C:\\Users\\Nikola\\Desktop\\Java Workspace\\Ostalo\\AutinjoSPRING\\src\\main\\webapp\\images\\" + imagesFolderName);
 		    Files.createDirectories(path);
 		    
-		    ImageIO.write(image, "jpg", new File(path + "\\" + random.nextInt(1000) + ".jpg"));
+		    if(thumbnail) {
+		    	ImageIO.write(image, "jpg", new File(path + "\\thumbail.jpg"));
+		    	return imagesFolderName + "/thumbail.jpg";
+		    }
+		    else {
+		    	ImageIO.write(image, "jpg", new File(path + "\\" + randomImageInt + ".jpg"));
+		    	return imagesFolderName + "/" +  randomImageInt + ".jpg";
+		    }
+		    
 		} catch (IOException e) {
 			e.printStackTrace();
+			return "EXCEPTION OCCURED";
 		}
 	}
 

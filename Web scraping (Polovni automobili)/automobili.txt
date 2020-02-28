@@ -1,4 +1,75 @@
-INSERT INTO automobil (marka, model, godiste, kubikaza, kilometraza, ks, gorivo, stanje, cena)  VALUES ("Volkswagen", "Passat B6", "2007", "1986", "206000", "140", "Dizel", "Polovan", "4850");
+INSERT INTO automobil(idAutomobil, marka, model, gorivo, ks, cena, kubikaza, zamena, kilometraza, fiksnaCena, stanje, karoserija, godiste, karakteristike, sigurnost, oprema, stanjeLista, opis, thumbnailPath) VALUES (1,"Audi", "A4", "Dizel", 137,3000,1900,"DA (za skuplje)", 240000,"Cena nije fiksna", "Polovno vozilo", "Limuzina", 2002,"Emisiona klasa motora:Euro 3,Pogon:Prednji,Menjač:Manuelni 5 brzina,Broj vrata:4/5 vrata,Broj sedišta:4 sedišta,Strana volana:Levi volan,Klima:Manuelna klima,Boja:Tirkiz,Materijal enterijera:Štof,Boja enterijera:Crna,Registrovan do:12.2020.,Poreklo vozila:Domaće tablice,Vlasništvo:Vodi se na prodavca,Oštećenje:Nije oštećen,", "Airbag za vozača,Airbag za suvozača,Bočni airbag,Child lock,ABS,ESP,Alarm,Kodiran ključ,Blokada motora,Centralno zaključavanje,", "Metalik boja,Branici u boji auta,Servo volan,Daljinsko zaključavanje,Putni računar,Tonirana stakla,Električni podizači,Električni retrovizori,Sedišta podesiva po visini,Svetla za maglu,Xenon svetla,Aluminijumske felne,Radio CD,LED prednja svetla,LED zadnja svetla,Naslon za ruku,Sportsko vešanje,Dnevna svetla,", "Garažiran,Rezervni ključ,Tuning,", "vlasnik auta 5 godina..redovno održavan..servisiran...auto je čipovan...4 iste zimske gume,alu felne 17&#039; ..odrađeni svi servisi, rađen menjač pre 1500km...promenjeni amortizeri, pločice, mali servis rađen pre 1500km..presvlake rađene po meri ...auto ima sportske opruge(plave)....vredi pogledati! samo za ozbiljne kupce! REGISTROVAN GODINU DANA!,samo džip uz moju doplatu...,", null);
 
-INSERT INTO automobil (marka, model, godiste, kubikaza, kilometraza, ks, gorivo, stanje, cena)  VALUES ("Mercedes Benz", "C 180", "2012", "2143", "237000", "120", "Dizel", "Polovan", "10490");
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Audi-A4-2002-240000/thumbail.jpg", 1);
+UPDATE `autinjodb`.`automobil` SET `thumbnailPath` = "/autinjo/images/Audi-A4-2002-240000/thumbail.jpg" WHERE (`idAutomobil` = 1);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Audi-A4-2002-240000/723.jpg", 1);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Audi-A4-2002-240000/241.jpg", 1);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Audi-A4-2002-240000/933.jpg", 1);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Audi-A4-2002-240000/492.jpg", 1);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Audi-A4-2002-240000/795.jpg", 1);
+
+INSERT INTO automobil(idAutomobil, marka, model, gorivo, ks, cena, kubikaza, zamena, kilometraza, fiksnaCena, stanje, karoserija, godiste, karakteristike, sigurnost, oprema, stanjeLista, opis, thumbnailPath) VALUES (2,"Hyundai", "Tucson", "Dizel", 111,3950,1991,"NE", 196000,"Cena nije fiksna", "Polovno vozilo", "Džip/SUV", 2005,"Plivajući zamajac:Bez plivajućeg zamajca,Emisiona klasa motora:Euro 3,Pogon:4x4,Menjač:Manuelni 5 brzina,Broj vrata:4/5 vrata,Broj sedišta:5 sedišta,Strana volana:Levi volan,Klima:Automatska klima,Boja:Plava,Materijal enterijera:Prirodna koža,Registrovan do:Nije registrovan,Poreklo vozila:Na ime kupca,Oštećenje:Nije oštećen,", "", "", "", "POSEDUJEM SVE SLIKE PRILIKOM KUPOVINE AUTA U INOSTRANSTVU . . . GDE SE VIDI DA JE UVEŽEN BEZ OŠTECENJA I SA ORGINALNOM KILOMETRAŽOM . . . GARANCIJA ZA PREDJENU KILOMETRAŽU. .POSEDUJEM ORGINALNU SERVISNU KNJIGU SA SVIM REDOVNO UPISANIM SERVISIMA . . . . DVA KLJUČA . . . URADJEN VELIKI SERVIS . . . SVE PROVERE SU DOZVOLJENE . . . VREDI POGLEDATI,", null);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Hyundai-Tucson-2005-196000/thumbail.jpg", 2);
+UPDATE `autinjodb`.`automobil` SET `thumbnailPath` = "/autinjo/images/Hyundai-Tucson-2005-196000/thumbail.jpg" WHERE (`idAutomobil` = 2);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Hyundai-Tucson-2005-196000/660.jpg", 2);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Hyundai-Tucson-2005-196000/678.jpg", 2);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Hyundai-Tucson-2005-196000/47.jpg", 2);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Hyundai-Tucson-2005-196000/987.jpg", 2);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Hyundai-Tucson-2005-196000/64.jpg", 2);
+
+INSERT INTO automobil(idAutomobil, marka, model, gorivo, ks, cena, kubikaza, zamena, kilometraza, fiksnaCena, stanje, karoserija, godiste, karakteristike, sigurnost, oprema, stanjeLista, opis, thumbnailPath) VALUES (3,"Mercedes Benz", "C 220", "Dizel", 170,5950,2148,"NE", 180625,"Cena nije fiksna", "Polovno vozilo", "Karavan", 2008,"Emisiona klasa motora:Euro 4,Pogon:Zadnji,Menjač:Automatski,Broj vrata:4/5 vrata,Broj sedišta:5 sedišta,Strana volana:Levi volan,Klima:Automatska klima,Boja:Siva,Materijal enterijera:Kombinovana koža,Boja enterijera:Siva,Registrovan do:Nije registrovan,Poreklo vozila:Na ime kupca,Oštećenje:Nije oštećen,", "Airbag za vozača,Airbag za suvozača,Bočni airbag,Child lock,ABS,ESP,ASR,Kodiran ključ,Centralno zaključavanje,", "Metalik boja,Branici u boji auta,Servo volan,Multifunkcionalni volan,Daljinsko zaključavanje,Putni računar,Tonirana stakla,Električni podizači,Električni retrovizori,Grejači retrovizora,Sedišta podesiva po visini,Elektro podesiva sedišta,Svetla za maglu,Senzori za kišu,Parking senzori,Aluminijumske felne,Navigacija,Bluetooth,Radio CD,Grejači vetrobranskog stakla,Naslon za ruku,Kožni volan,", "Rezervni ključ,", "FABRICKO STANJE VREDI POGLEDATI,SVE PLACENO ,KUPCU OSTAJE REGISTRACIJA,", null);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Mercedes Benz-C 220-2008-180625/thumbail.jpg", 3);
+UPDATE `autinjodb`.`automobil` SET `thumbnailPath` = "/autinjo/images/Mercedes Benz-C 220-2008-180625/thumbail.jpg" WHERE (`idAutomobil` = 3);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Mercedes Benz-C 220-2008-180625/802.jpg", 3);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Mercedes Benz-C 220-2008-180625/642.jpg", 3);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Mercedes Benz-C 220-2008-180625/817.jpg", 3);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Mercedes Benz-C 220-2008-180625/985.jpg", 3);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Mercedes Benz-C 220-2008-180625/211.jpg", 3);
+
+INSERT INTO automobil(idAutomobil, marka, model, gorivo, ks, cena, kubikaza, zamena, kilometraza, fiksnaCena, stanje, karoserija, godiste, karakteristike, sigurnost, oprema, stanjeLista, opis, thumbnailPath) VALUES (4,"Renault", "Megane", "Dizel", 110,4350,1461,"NE", 143647,"Cena nije fiksna", "Polovno vozilo", "Hečbek", 2009,"Emisiona klasa motora:Euro 5,Pogon:Prednji,Menjač:Manuelni 6 brzina,Broj vrata:4/5 vrata,Broj sedišta:5 sedišta,Strana volana:Levi volan,Klima:Manuelna klima,Boja:Siva,Materijal enterijera:Štof,Boja enterijera:Crna,Registrovan do:Nije registrovan,Poreklo vozila:Na ime kupca,Oštećenje:Nije oštećen,", "Airbag za vozača,Airbag za suvozača,Bočni airbag,Child lock,ABS,ESP,ASR,Kodiran ključ,Blokada motora,Centralno zaključavanje,", "Metalik boja,Branici u boji auta,Servo volan,Multifunkcionalni volan,Tempomat,Daljinsko zaključavanje,Putni računar,Tonirana stakla,Električni podizači,Električni retrovizori,Grejači retrovizora,Sedišta podesiva po visini,Svetla za maglu,Senzori za svetla,Senzori za kišu,Aluminijumske felne,Radio CD,Naslon za ruku,", "Rezervni ključ,", "Auto u dobrom stanju kako spolja tako i unutra dva kljuca gume dobre na trapu dobar placene sve dazbine kupcu odtaje samo registracija...,", null);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Renault-Megane-2009-143647/thumbail.jpg", 4);
+UPDATE `autinjodb`.`automobil` SET `thumbnailPath` = "/autinjo/images/Renault-Megane-2009-143647/thumbail.jpg" WHERE (`idAutomobil` = 4);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Renault-Megane-2009-143647/817.jpg", 4);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Renault-Megane-2009-143647/3.jpg", 4);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Renault-Megane-2009-143647/455.jpg", 4);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Renault-Megane-2009-143647/371.jpg", 4);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/Renault-Megane-2009-143647/134.jpg", 4);
+
+INSERT INTO automobil(idAutomobil, marka, model, gorivo, ks, cena, kubikaza, zamena, kilometraza, fiksnaCena, stanje, karoserija, godiste, karakteristike, sigurnost, oprema, stanjeLista, opis, thumbnailPath) VALUES (5,"BMW", "X3", "Dizel", 177,7450,1997,"NE", 182000,"Cena nije fiksna", "Polovno vozilo", "Džip/SUV", 2007,"Emisiona klasa motora:Euro 4,Pogon:4x4,Menjač:Automatski,Broj vrata:4/5 vrata,Broj sedišta:5 sedišta,Strana volana:Levi volan,Klima:Automatska klima,Boja:Crna,Materijal enterijera:Prirodna koža,Boja enterijera:Smeđa,Registrovan do:Nije registrovan,Poreklo vozila:Na ime kupca,Oštećenje:Nije oštećen,", "Airbag za vozača,Airbag za suvozača,Bočni airbag,Child lock,ABS,ESP,ASR,Alarm,Kodiran ključ,Centralno zaključavanje,", "Metalik boja,Branici u boji auta,Servo volan,Multifunkcionalni volan,Tempomat,Daljinsko zaključavanje,Putni računar,Tonirana stakla,Električni podizači,Električni retrovizori,Grejači retrovizora,Sedišta podesiva po visini,Grejanje sedišta,Svetla za maglu,Xenon svetla,Senzori za svetla,Senzori za kišu,Parking senzori,Kuka za vuču,Aluminijumske felne,Radio CD,LED prednja svetla,LED zadnja svetla,Naslon za ruku,Elektro sklopivi retrovizori,Sportska sedišta,Kožni volan,", "Garancija,Garažiran,Rezervni ključ,Restauriran,", "Placena carina pdv i uverenje agencije za bezbednost saobracaja,kupcu ostaje samo registracija.auto prelep u odlicnoj opremi sa automatskim menjacem.fabricka euro kuka nikad stavljena.vozilo mozete pogledati svaki dan od 09-17h sem nedelje,pozdrav mdm group2000,Bavanistanski put 104,Pancevo,", null);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/BMW-X3-2007-182000/thumbail.jpg", 5);
+UPDATE `autinjodb`.`automobil` SET `thumbnailPath` = "/autinjo/images/BMW-X3-2007-182000/thumbail.jpg" WHERE (`idAutomobil` = 5);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/BMW-X3-2007-182000/84.jpg", 5);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/BMW-X3-2007-182000/960.jpg", 5);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/BMW-X3-2007-182000/293.jpg", 5);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/BMW-X3-2007-182000/718.jpg", 5);
+
+INSERT INTO slika(path, Automobil_idAutomobil) VALUES ("/autinjo/images/BMW-X3-2007-182000/436.jpg", 5);
 
